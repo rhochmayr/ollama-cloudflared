@@ -2,7 +2,7 @@
 FROM ollama/ollama
 
 # Update and install wget to download cloudflared
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget curl
 
 # Download and install cloudflared
 RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb \
