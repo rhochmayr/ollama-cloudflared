@@ -19,7 +19,7 @@ RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/clou
 EXPOSE 11434
 
 # Set the environment variable for the ollama host
-ENV OLLAMA_HOST 0.0.0.0
+ENV OLLAMA_HOST=0.0.0.0
 ENV OLLAMA_ORIGINS="*"
 
 # Copy a script to start both ollama and cloudflared
