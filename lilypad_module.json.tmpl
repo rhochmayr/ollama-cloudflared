@@ -1,0 +1,40 @@
+{
+  "machine": {
+    "gpu": 1,
+    "cpu": 8000,
+    "ram": 8000
+  },
+  "job": {
+    "APIVersion": "V1beta1",
+    "Spec": {
+      "Deal": {
+        "Concurrency": 1
+      },
+      "Docker": {
+        "Entrypoint": [
+            "/start_services.sh"
+        ],
+        "EnvironmentVariables": [
+            {{ if .SUPABASE_INSTANCE_ID }}"{{ subst "SUPABASE_INSTANCE_ID=%s" .SUPABASE_INSTANCE_ID }}"{{ end }},
+            {{ if .SUPABASE_URL }}"{{ subst "SUPABASE_URL=%s" .SUPABASE_URL }}"{{ end }},
+            {{ if .SUPABASE_ANON_KEY }}"{{ subst "SUPABASE_ANON_KEY=%s" .SUPABASE_ANON_KEY }}"{{ end }}
+        ],
+        "Image": "ghcr.io/rhochmayr/ollama-cloudflared:latest"
+      },
+      "Engine": "Docker",
+      "Network": {
+        "Type": "Full"
+      },
+      "PublisherSpec": {
+        "Type": "IPFS"
+      },
+      "Resources": {
+        "GPU": "1",
+        "cpu": "8",
+        "memory": "8Gb"
+      },
+      "Timeout": 1800,
+      "Verifier": "Noop"
+    }
+  }
+}
